@@ -48,7 +48,7 @@ export const EXHIBITIONS = [
       {
         url: "/assets/img/mihas.jpeg",
         title: "MIHAS International Showcase",
-        caption: "Representing Dr. Anne Skincare at the premier MIHAS exhibition booth in MITEC",
+        caption: "Representing Dr. Anne Skincare at the premier MIHAS exhibition booth in MITEC Malaysia",
       },
       {
         url: "/assets/img/mihas2.jpeg",
