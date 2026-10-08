@@ -112,14 +112,22 @@ function ExhibitionCarousel({
               alt={currentImage.title} 
               className="max-h-full max-w-full object-contain rounded-lg shadow-md"
               onError={(e) => {
-                const currentSrc = e.currentTarget.getAttribute('src') || '';
+                const target = e.currentTarget;
+                const currentSrc = target.getAttribute('src') || '';
+                // Resilient fallback chain for Netlify / static hosts
                 if (currentSrc.includes('recipet.jpeg')) {
-                  e.currentTarget.src = currentSrc.replace('recipet.jpeg', 'receipt.jpeg');
-                } else if (currentSrc.includes('.jpeg')) {
-                  e.currentTarget.src = currentSrc.replace('.jpeg', '.jpg');
+                  target.src = '/assets/img/receipt.jpeg';
+                } else if (currentSrc.includes('receipt.jpeg')) {
+                  target.src = '/assets/img/conversation3.jpeg';
+                } else if (currentSrc.includes('mihas2.jpeg')) {
+                  target.src = '/assets/img/mihas.jpeg';
+                } else if (currentSrc.includes('team4.jpeg')) {
+                  target.src = '/assets/img/conversation3.jpeg';
+                } else if (currentSrc.endsWith('.jpeg')) {
+                  target.src = currentSrc.replace('.jpeg', '.jpg');
                 } else {
-                  e.currentTarget.style.display = 'none';
-                  const fallback = e.currentTarget.nextElementSibling;
+                  target.style.display = 'none';
+                  const fallback = target.nextElementSibling;
                   if (fallback) fallback.classList.remove('hidden');
                 }
               }}
@@ -207,9 +215,18 @@ function ExhibitionCarousel({
                 alt={img.title} 
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  const currentSrc = e.currentTarget.getAttribute('src') || '';
+                  const target = e.currentTarget;
+                  const currentSrc = target.getAttribute('src') || '';
                   if (currentSrc.includes('recipet.jpeg')) {
-                    e.currentTarget.src = currentSrc.replace('recipet.jpeg', 'receipt.jpeg');
+                    target.src = '/assets/img/receipt.jpeg';
+                  } else if (currentSrc.includes('receipt.jpeg')) {
+                    target.src = '/assets/img/conversation3.jpeg';
+                  } else if (currentSrc.includes('mihas2.jpeg')) {
+                    target.src = '/assets/img/mihas.jpeg';
+                  } else if (currentSrc.includes('team4.jpeg')) {
+                    target.src = '/assets/img/conversation3.jpeg';
+                  } else if (currentSrc.endsWith('.jpeg')) {
+                    target.src = currentSrc.replace('.jpeg', '.jpg');
                   }
                 }}
               />
